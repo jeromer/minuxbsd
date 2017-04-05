@@ -14,11 +14,11 @@ pkg install postgresql96-server
 There!
 
 ## Configuration recommendations (for both master and slave)
-In rc.conf, set the following:\
+In rc.conf, set the following:
 
 ```
-postgresql\_enable="YES"\
-postgresql\_data="/pgdata"\
+postgresql_enable="YES"
+postgresql_data="/pgdata"
 ```
 
 Then, build a ZFS array for the data:
@@ -28,7 +28,7 @@ zpool create pgdata da1
 ```
 
 Use /usr/local/bin/initdb to create the PG base files and template configuration,
-and we suggest you simply add the following configuration to /pgdata/postgresql.conf:\
+and we suggest you simply add the following configuration to /pgdata/postgresql.conf:
 
 ```
 listen_addresses = '*'
