@@ -46,6 +46,9 @@ archive_timeout = 60
 max_wal_senders = 5
 ```
 
+Finally, make sure user postgres was created, change its shell to bash,\
+create /pgdata/walarchives, and change its ownership to postgres:postgres.
+
 ## Orchestration scripts (for both master and slave)
 
 Place the following scripts under ~postgres:
