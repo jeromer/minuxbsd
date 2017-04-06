@@ -9,7 +9,7 @@ pkg install pgpool
 
 ## Configuration recommendations
 
-In rc.conf, set the following:
+In ```/etc/rc.conf```, set the following:
 
 ```
 pgpool_enable="YES"
@@ -25,7 +25,7 @@ Now, create a postgres user (or pgpool, whatever), and stick it under /home/post
 The scripts we'll be creating later will have to be there.\
 Then, in that directory, create subdirectories for each PostgreSQL instance you'll be using (pg01, pg02, etc.).
 
-Then, put the following configuration in /usr/local/etc/pgpool.conf; note that you must manually find the tokens
+Then, put the following configuration in ```/usr/local/etc/pgpool.conf```; note that you must manually find the tokens
 and modify their default values.\
 And another note: the listen\_addresses token cannot have '*' assigned to it: this is the second quirk I mentioned earlier.
 Instead, you must use an IP address, or '0.0.0.0'. This is actually what we're going to do here for simplicity:

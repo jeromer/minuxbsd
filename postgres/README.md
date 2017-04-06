@@ -19,7 +19,7 @@ There!
 
 Basically, we're going to configure all nodes so they can all be master or slave.
 
-In rc.conf, set the following:
+In ```/etc/rc.conf```, set the following:
 
 ```
 postgresql_enable="YES"
@@ -32,8 +32,8 @@ Then, build a ZFS array for the data:
 zpool create pgdata da1
 ```
 
-Use /usr/local/bin/initdb to create the PG base files and template configuration,
-and we suggest you simply add the following configuration to /pgdata/postgresql.conf:
+Use ```/usr/local/bin/initdb``` to create the PG base files and template configuration,
+and we suggest you simply add the following configuration to ```/pgdata/postgresql.conf```:
 
 ```
 listen_addresses = '*'
@@ -51,7 +51,7 @@ archive_timeout = 60
 max_wal_senders = 5
 ```
 
-Then, pg\_hba.conf has to contain the following:
+Then, ```pg_hba.conf``` has to contain the following:
 
 ```
 host    replication     all     other_nodes/32        trust
@@ -60,7 +60,7 @@ host    all             all     all             md5
 ```
 
 Finally, make sure user postgres was created, change its shell to bash,\
-create /pgdata/walarchives, and change its ownership to postgres:postgres.
+create ```/pgdata/walarchives```, and change its ownership to postgres:postgres.
 
 ## Orchestration scripts (for both master and slave)
 
