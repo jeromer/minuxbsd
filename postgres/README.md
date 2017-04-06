@@ -65,7 +65,7 @@ create ```/pgdata/walarchives```, and change its ownership to postgres:postgres.
 ## Orchestration scripts (for both master and slave)
 
 Place the following scripts under ~postgres; that way the same deployment can be used for stand-alone as well as master-slave instances.\
-Note that reconvery.conf is placed in ~postgres and only copied over to $PG\_DATA when needed (by a slave instance).
+Note that ```recovery.conf``` is placed in ~postgres and only copied over to $PG\_DATA when needed (by a slave instance).
 
 ### archive\_command.sh
 ```
