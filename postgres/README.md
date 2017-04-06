@@ -1,8 +1,10 @@
 # PostgreSQL (9.6+)
 
 For starters, FreeBSD is the only Unix distribution that packaged PostgreSQL properly.
+The very cool thing about it is you can specify the default data directory directly in rc.conf.\
+Also, everything lies in $PG\_DATA, even the configuration files.
 
-Forget Debian, and ESPECIALLY forget Centoids!
+So forget Debian, and ESPECIALLY forget Centoids! ;-)
 
 Anyway, let's get started...
 
@@ -14,6 +16,9 @@ pkg install postgresql96-server
 There!
 
 ## Configuration recommendations (for both master and slave)
+
+Basically, we're going to configure all nodes so they can all be master or slave.
+
 In rc.conf, set the following:
 
 ```
@@ -46,12 +51,21 @@ archive_timeout = 60
 max_wal_senders = 5
 ```
 
+Then, pg\_hba.conf has to contain the following:
+
+```
+host    replication     all     other_nodes/32        trust
+host    all             all     pgpool_ip_address/32  trust
+host    all             all     all             md5
+```
+
 Finally, make sure user postgres was created, change its shell to bash,\
 create /pgdata/walarchives, and change its ownership to postgres:postgres.
 
 ## Orchestration scripts (for both master and slave)
 
-Place the following scripts under ~postgres:
+Place the following scripts under ~postgres; that way the same deployment can be used for stand-alone as well as master-slave instances.\
+Note that reconvery.conf is placed in ~postgres and only copied over to $PG\_DATA when needed (by a slave instance).
 
 ### archive\_command.sh
 ```
