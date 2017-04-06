@@ -58,7 +58,7 @@ failover_command = '/home/postgres/failover.sh %d %D %m %M %P %R'
 
 Then, create a user/password for PCP (the pgpool administrator account), by adding the following to /usr/local/etc/pcp.conf:
 
-`̀``
+```
 postgres:e8a48653851e28c69d0506508fb27fc5
 ```
 
