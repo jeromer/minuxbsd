@@ -97,3 +97,44 @@ pg_basebackup -D $PG_DATA --host=pg02 --port=5432
 cp *.conf $PG_DATA/
 ```
 
+## Monitoring
+
+Here are a few tricks you can use to monitor the status of your nodes.
+
+### Getting the replication status (from the master node)
+
+```
+postgres=# select * from pg_stat_replication ;
+-[ RECORD 1 ]----+------------------------------
+pid              | 27659
+usesysid         | 10
+usename          | postgres
+application_name | pg02
+client_addr      | 10.50.62.22
+client_hostname  | 
+client_port      | 33651
+backend_start    | 2017-04-05 20:35:18.506734+02
+backend_xmin     | 
+state            | streaming
+sent_location    | E/A4000060
+write_location   | E/A4000060
+flush_location   | E/A4000060
+replay_location  | E/A4000060
+sync_priority    | 0
+sync_state       | async
+```
+
+### Monitoring WAL shipping
+
+```
+postgres=# select * from pg_stat_archiver ;
+-[ RECORD 1 ]------+------------------------------
+archived_count     | 3760
+last_archived_wal  | 000000010000000E000000AA
+last_archived_time | 2017-04-07 07:52:39.141417+02
+failed_count       | 0
+last_failed_wal    | 
+last_failed_time   | 
+stats_reset        | 2017-04-03 18:38:05.174681+02
+```
+
