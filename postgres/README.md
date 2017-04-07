@@ -138,3 +138,8 @@ last_failed_time   |
 stats_reset        | 2017-04-03 18:38:05.174681+02
 ```
 
+## HA
+
+- https://www.slideshare.net/dataloop/zero-downtime-postgres-upgrades
+- https://gocardless.com/blog/zero-downtime-postgres-migrations-the-hard-parts/
+
